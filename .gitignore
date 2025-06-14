@@ -22,3 +22,5 @@ __pycache__/
 
 # Others
 *.DS_Store
+
+training/audio_keyword/data/speech_commands/
