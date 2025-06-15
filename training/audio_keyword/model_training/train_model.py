@@ -15,14 +15,6 @@ X = np.load("training/audio_keyword/data/preprocessed/X.npy")
 y = np.load("training/audio_keyword/data/preprocessed/y.npy")
 X = np.expand_dims(X, axis=-1)  # shape: (samples, 40, 101, 1)
 
-idx = random.randint(0, len(X) - 1)
-print("标签索引:", y[idx])
-plt.imshow(X[idx].squeeze(), cmap='hot', interpolation='nearest')
-plt.title(f"标签: {y[idx]}")
-plt.savefig("label.png", dpi=300)
-
-plt.show()
-
 # 【第2段：数据分割】
 X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_state=42)
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
