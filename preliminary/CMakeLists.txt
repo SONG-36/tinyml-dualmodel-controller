@@ -33,6 +33,14 @@ include_directories(
   Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7
   Drivers/CMSIS/DSP/Include
   Drivers/CMSIS/DSP/Include/dsp
+  tflite_micro/tensorflow
+  tflite_micro/tensorflow/lite
+  tflite_micro/tensorflow/lite/c
+  tflite_micro/tensorflow/lite/core
+  tflite_micro/tensorflow/lite/micro
+  tflite_micro/tensorflow/lite/micro/kernels
+  tflite_micro/third_party/flatbuffers/include
+  tflite_micro/third_party/flatbuffers/include/flatbuffers/pch
 )
 
 # 源文件
@@ -44,6 +52,12 @@ file(GLOB FREERTOS_SRCS
   Middlewares/Third_Party/FreeRTOS/Source/*.c
   Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/port.c
   Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+)
+
+file(GLOB_RECURSE TFLM_SRCS
+  ${CMAKE_SOURCE_DIR}/tflite_micro/tensorflow/lite/micro/*.cc
+  ${CMAKE_SOURCE_DIR}/tflite_micro/tensorflow/lite/c/*.cc
+  ${CMAKE_SOURCE_DIR}/tflite_micro/tensorflow/lite/core/*.cc
 )
 
 # 移除 HAL 模板文件
@@ -67,6 +81,7 @@ add_executable(${PROJECT_NAME}
   ${HAL_SRCS}
   ${FREERTOS_SRCS}
   ${DSP_SRCS}
+  ${TFLM_SRCS}
 )
 
 # 设置输出为 .elf
